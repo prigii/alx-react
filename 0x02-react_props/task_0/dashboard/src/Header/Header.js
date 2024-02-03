@@ -1,6 +1,6 @@
-import logo from './holberton-logo.jpg';
+import logo from '../assets/holberton-logo.jpg';
 import './Header.css';
-import Notifications from './Notifications';
+import Notifications from '../Notifications/Notifications';
 
 function App() {
   return (

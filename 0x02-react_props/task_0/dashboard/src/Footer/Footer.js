@@ -1,5 +1,5 @@
 import './Footer.css';
-import { getFooterCopy, getFullYear } from './utils';
+import { getFooterCopy, getFullYear } from '../utils/utils';
 
 
 function App() {
