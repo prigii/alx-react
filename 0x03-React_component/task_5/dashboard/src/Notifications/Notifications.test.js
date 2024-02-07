@@ -28,6 +28,14 @@ describe("Notification tests", () => {
     expect(wrapper.find("ul").childAt(2).html()).toEqual(`<li data-urgent=\"true\">${getLatestNotification()}</li>`);
   });
 
+  it("renders an unordered list", () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+    expect(wrapper.find("ul").children()).toHaveLength(3);
+    wrapper.find("ul").forEach((node) => {
+      expect(node.equals(<NotificationItem />));
+    });
+  });
+
   it("renders correct text", () => {
     const wrapper = shallow(<Notifications displayDrawer={true} />);
 
@@ -71,6 +79,15 @@ describe("Notification tests", () => {
     expect(wrapper.containsMatchingElement(<li data-notification-type="default">No new notification for now</li>));
   });
 
+  it("renders correctly when listNotifications is passed and with the right number of notifications", () => {
+    const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+
+    expect(wrapper.find("ul").children()).toHaveLength(3);
+    wrapper.find("ul").forEach((node) => {
+      expect(node.equals(<NotificationItem />));
+    });
+  });
+
   it('renders "No new notifications for now" instead of "Here is the list of notifications" when listNotifications is empty', () => {
     const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={[]} />);
 
@@ -78,18 +95,18 @@ describe("Notification tests", () => {
 
     expect(wrapper.containsMatchingElement(<li data-notification-type="default">No new notification for now</li>));
   });
-  
-  describe("onclick event behaves as it should", () => {
-    it("should call console.log", () => {
-      const wrapper = shallow(<Notifications />);
-      const spy = jest.spyOn(console, "log").mockImplementation();
-  
-      wrapper.instance().markAsRead = spy;
-      wrapper.instance().markAsRead(1);
-      expect(wrapper.instance().markAsRead).toBeCalledWith(1);
-      expect(spy).toBeCalledTimes(1);
-      expect(spy).toBeCalledWith(1);
-      spy.mockRestore();
-    });
+});
+
+describe("onclick event behaves as it should", () => {
+  it("should call console.log", () => {
+    const wrapper = shallow(<Notifications />);
+    const spy = jest.spyOn(console, "log").mockImplementation();
+
+    wrapper.instance().markAsRead = spy;
+    wrapper.instance().markAsRead(1);
+    expect(wrapper.instance().markAsRead).toBeCalledWith(1);
+    expect(spy).toBeCalledTimes(1);
+    expect(spy).toBeCalledWith(1);
+    spy.mockRestore();
   });
 });
