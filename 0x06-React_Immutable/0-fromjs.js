@@ -1,7 +1,5 @@
-const { fromJS } = require('immutable');
+import { fromJS } from 'immutable';
 
 export default function getImmutableObject(object) {
-  // Convert the object to immutable Map
-  const immutableMap = fromJS(object);
-  return immutableMap;
+    return fromJS(object);
 }
