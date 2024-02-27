@@ -1,6 +1,11 @@
 import { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER } from "./uiActionTypes";
-
 import { login, logout, hideNotificationDrawer, displayNotificationDrawer } from "./uiActionCreators";
+import configureStore from "redux-mock-store";
+import thunk from "redux-thunk";
+import fetchMock from "fetch-mock";
+
+const middleWares = [thunk];
+const mockStore = configureStore(middleWares);
 
 describe("tests for UI notification action creators", () => {
   it("should create proper action for login", () => {
@@ -28,4 +33,6 @@ describe("tests for UI notification action creators", () => {
       type: HIDE_NOTIFICATION_DRAWER,
     });
   });
+
+ 
 });
