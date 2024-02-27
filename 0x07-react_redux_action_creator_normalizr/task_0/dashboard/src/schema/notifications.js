@@ -1,4 +1,4 @@
-import * as notificationItem from '../../notifications.json'
+import * as notificationItem from '../../../notifications.json'
 
 export const getAllNotificationsByUser = (userId) => {
     return notificationItem.default
